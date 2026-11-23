@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Oefentoets taal groep 7</title>
+<meta name="description" content="Oefen werkwoorden, grammatica, komma's en leestekens voor groep 7.">
+<style>
+:root{
+  --bg:#f4f1ea; --card:#fffdf8; --ink:#1f2a37; --mute:#5d6b7a; --line:#d9d2c3;
+  --acc:#1d5fa8; --acc-ink:#fff; --acc-soft:#e3eefb;
+  --ok:#1f7a45; --ok-bg:#dff3e6; --no:#b3311f; --no-bg:#fbe3df; --sel:#ffe9a8;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:680px;margin:0 auto;padding:20px 16px 60px}
+h1{font-size:1.7rem;line-height:1.2;margin:8px 0 6px}
+h2{font-size:1.25rem;margin:0 0 4px}
+p{margin:0 0 12px}
+.mute{color:var(--mute)}
+.small{font-size:.9rem}
+button{font:inherit;color:inherit;cursor:pointer}
+.group{margin:26px 0 8px;font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.part{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:0 0 8px}
+.part:hover,.part:focus-visible{border-color:var(--acc);outline:none}
+.part b{display:block}
+.part span.s{display:block;color:var(--mute);font-size:.9rem}
+.part .grow{flex:1;min-width:0}
+.part .best{font-size:.85rem;font-weight:600;color:var(--ok);white-space:nowrap}
+.part.mix{background:var(--acc);color:var(--acc-ink);border-color:var(--acc)}
+.part.mix span.s{color:#d6e6f8}
+.top{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.back{background:none;border:0;padding:6px 0;color:var(--acc);font-weight:600}
+.count{margin-left:auto;color:var(--mute);font-size:.9rem;font-variant-numeric:tabular-nums}
+.bar{height:8px;background:var(--line);border-radius:8px;overflow:hidden;margin-bottom:18px}
+.bar i{display:block;height:100%;background:var(--acc);width:0;transition:width .25s}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 16px}
+.tag{display:inline-block;background:var(--acc-soft);color:var(--acc);font-size:.8rem;font-weight:700;border-radius:20px;padding:3px 10px;margin-bottom:10px}
+.instr{font-weight:600;margin-bottom:14px}
+.sent{font-size:1.3rem;line-height:1.9;margin-bottom:16px}
+.inf{color:var(--mute);font-size:1rem;white-space:nowrap}
+input.gap{font:inherit;font-size:1.2rem;width:9.5em;max-width:100%;padding:4px 10px;border:2px solid var(--acc);border-radius:10px;background:#fff;color:var(--ink)}
+input.gap:focus{outline:3px solid var(--acc-soft)}
+input.gap.ok{border-color:var(--ok);background:var(--ok-bg)}
+input.gap.no{border-color:var(--no);background:var(--no-bg)}
+.w{display:inline-block;font:inherit;font-size:1.2rem;line-height:1.3;background:#fff;border:2px solid var(--line);border-radius:10px;padding:5px 9px;margin:0 3px 8px 0}
+.w.on{background:var(--sel);border-color:#c79a12}
+.w.ok{background:var(--ok-bg);border-color:var(--ok)}
+.w.no{background:var(--no-bg);border-color:var(--no)}
+.w.miss{border-color:var(--ok);border-style:dashed}
+.w:disabled{cursor:default;color:var(--ink);opacity:1}
+.marks{display:flex;gap:10px;margin-bottom:16px}
+.mark{flex:1;font-size:1.8rem;font-weight:700;background:#fff;border:2px solid var(--line);border-radius:14px;padding:10px 0}
+.mark small{display:block;font-size:.8rem;font-weight:500;color:var(--mute)}
+.mark.ok{background:var(--ok-bg);border-color:var(--ok)}
+.mark.no{background:var(--no-bg);border-color:var(--no)}
+.mark:disabled{cursor:default;color:var(--ink)}
+.go{display:block;width:100%;background:var(--acc);color:var(--acc-ink);border:0;border-radius:12px;padding:13px;font-weight:700;font-size:1.05rem}
+.go:disabled{opacity:.45;cursor:default}
+.fb{border-radius:12px;padding:12px 14px;margin:0 0 14px}
+.fb.ok{background:var(--ok-bg);color:#124d2b}
+.fb.no{background:var(--no-bg);color:#6e1d12}
+.fb b{display:block;margin-bottom:2px}
+.score{font-size:3rem;font-weight:800;line-height:1.1;margin:6px 0}
+.wrong{border-top:1px solid var(--line);padding:12px 0}
+.wrong:first-of-type{border-top:0}
+.wrong .q{font-weight:600}
+.wrong .y{color:var(--no)}
+.wrong .g{color:var(--ok)}
+.row{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.row .go{flex:1;min-width:150px}
+.go.alt{background:var(--card);color:var(--acc);border:2px solid var(--acc)}
+</style>
+</head>
+<body>
+<main id="app"></main>
+<script>
+// Zinnen met [haken]: de woorden tussen haken zijn het goede antwoord.
+var PARTS = [
+ {id:'tt', group:'Werkwoorden', title:'Tegenwoordige tijd', sub:'ik, jij, hij, zij en wij',
+  instr:'Vul het werkwoord in de tegenwoordige tijd in.',
+  qs:[
+   {t:'typ', s:'Ik ___ elke dag naar school.', inf:'fietsen', a:'fiets', u:'Bij ik schrijf je de ik-vorm: fiets.'},
+   {t:'typ', s:'Ik ___ het antwoord meteen.', inf:'raden', a:'raad', u:'Bij ik schrijf je de ik-vorm: raad. Geen t erachter.'},
+   {t:'typ', s:'Jij ___ dit een mooi verhaal.', inf:'vinden', a:'vindt', u:'Jij staat voor het werkwoord: ik-vorm + t. Vind + t = vindt.'},
+   {t:'typ', s:'Jij ___ altijd je fiets op slot.', inf:'zetten', a:'zet', u:'De ik-vorm is zet. Die eindigt al op een t, dus er komt geen t bij.'},
+   {t:'typ', s:'___ jij dit een leuk spel?', inf:'vinden', a:'vind', u:'Jij staat achter het werkwoord: alleen de ik-vorm, zonder t. Vind jij.'},
+   {t:'typ', s:'___ jij later ook dokter?', inf:'worden', a:'word', u:'Jij staat achter het werkwoord: alleen de ik-vorm, zonder t. Word jij.'},
+   {t:'typ', s:'Hij ___ morgen elf jaar.', inf:'worden', a:'wordt', u:'Bij hij: ik-vorm + t. Word + t = wordt.'},
+   {t:'typ', s:'Hij ___ de hond elke ochtend.', inf:'borstelen', a:'borstelt', u:'Bij hij: ik-vorm + t. Borstel + t = borstelt.'},
+   {t:'typ', s:'Zij ___ op de bus en leest een boek.', inf:'wachten', a:'wacht', u:'De ik-vorm is wacht. Die eindigt al op een t, dus er komt geen t bij.'},
+   {t:'typ', s:'Zij ___ de vraag goed en krijgt een sticker.', inf:'beantwoorden', a:'beantwoordt', u:'Bij zij (één persoon): ik-vorm + t. Beantwoord + t = beantwoordt.'},
+   {t:'typ', s:'Wij ___ vandaag pannenkoeken.', inf:'eten', a:'eten', u:'Bij wij schrijf je het hele werkwoord: eten.'},
+   {t:'typ', s:'Wij ___ op de trein.', inf:'wachten', a:'wachten', u:'Bij wij schrijf je het hele werkwoord: wachten.'}
+  ]},
+ {id:'vt', group:'Werkwoorden', title:'Verleden tijd', sub:'-te of -de, en sterke werkwoorden',
+  instr:'Vul het werkwoord in de verleden tijd in.',
+  qs:[
+   {t:'typ', s:'Ik ___ gisteren in de tuin.', inf:'werken', a:'werkte', u:'De stam is werk. De k zit in \'t kofschip, dus: werkte.'},
+   {t:'typ', s:'Hij ___ de deur open.', inf:'duwen', a:'duwde', u:'De stam is duw. De w zit niet in \'t kofschip, dus: duwde.'},
+   {t:'typ', s:'Wij ___ gisteren een uur op de trein.', inf:'wachten', a:'wachtten', u:'Stam wacht + ten = wachtten. Met dubbel t, want het is meervoud in de verleden tijd.'},
+   {t:'typ', s:'Zij ___ gisteren haar oma en vertelde alles.', inf:'bellen', a:'belde', u:'De stam is bel. De l zit niet in \'t kofschip, dus: belde.'},
+   {t:'typ', s:'Jij ___ vorige zomer naar Spanje.', inf:'reizen', a:'reisde', u:'Kijk naar het hele werkwoord: reizen. De z zit niet in \'t kofschip, dus -de. Je schrijft wel een s: reisde.'},
+   {t:'typ', s:'___ jij gisteren op mijn bericht?', inf:'antwoorden', a:'antwoordde', u:'Stam antwoord + de = antwoordde. Met dubbel d.'},
+   {t:'typ', s:'Wij ___ een taart voor mama.', inf:'bakken', a:'bakten', u:'De stam is bak. De k zit in \'t kofschip, dus: bakten.'},
+   {t:'typ', s:'Jij ___ de vaas op tafel.', inf:'zetten', a:'zette', u:'Stam zet + te = zette. Met dubbel t.'},
+   {t:'typ', s:'Wij ___ vorig jaar naar Utrecht.', inf:'verhuizen', a:'verhuisden', u:'Kijk naar het hele werkwoord: verhuizen. De z zit niet in \'t kofschip, dus -den. Je schrijft wel een s: verhuisden.'},
+   {t:'typ', s:'Hij ___ heel hard naar huis.', inf:'lopen', a:'liep', u:'Lopen is een sterk werkwoord. De klank verandert: liep.'},
+   {t:'typ', s:'Ik ___ een mooi cadeau van opa.', inf:'krijgen', a:'kreeg', u:'Krijgen is een sterk werkwoord. De klank verandert: kreeg.'},
+   {t:'typ', s:'Wij ___ gisteren de hele film.', inf:'kijken', a:'keken', u:'Kijken is een sterk werkwoord. De klank verandert: keken.'}
+  ]},
+ {id:'vd', group:'Werkwoorden', title:'Voltooide tijd', sub:'het voltooid deelwoord: ge...d, ge...t of ge...en',
+  instr:'Vul het voltooid deelwoord in.',
+  qs:[
+   {t:'typ', s:'Ik heb vandaag hard ___.', inf:'werken', a:'gewerkt', u:'De stam is werk. De k zit in \'t kofschip, dus een t: gewerkt.'},
+   {t:'typ', s:'Hij heeft de hele middag buiten ___.', inf:'spelen', a:'gespeeld', u:'De stam is speel. De l zit niet in \'t kofschip, dus een d: gespeeld.'},
+   {t:'typ', s:'Jij hebt de weg ___.', inf:'vragen', a:'gevraagd', u:'De stam is vraag. De g zit niet in \'t kofschip, dus een d: gevraagd.'},
+   {t:'typ', s:'Heb jij je tanden al ___?', inf:'poetsen', a:'gepoetst', u:'De stam is poets. De s zit in \'t kofschip, dus een t: gepoetst.'},
+   {t:'typ', s:'Wij zijn naar Groningen ___.', inf:'verhuizen', a:'verhuisd', u:'Verhuizen: de z zit niet in \'t kofschip, dus een d. Er komt geen ge- voor, want het woord begint al met ver-.'},
+   {t:'typ', s:'Ik heb een uur op jou ___.', inf:'wachten', a:'gewacht', u:'De stam is wacht. Die eindigt al op een t, dus er komt geen t bij: gewacht.'},
+   {t:'typ', s:'Hij heeft het hele verhaal ___.', inf:'vertellen', a:'verteld', u:'De stam is vertel. De l zit niet in \'t kofschip, dus een d. Geen ge-, want het woord begint al met ver-.'},
+   {t:'typ', s:'Ik heb het aan mama ___.', inf:'beloven', a:'beloofd', u:'Beloven: de v zit niet in \'t kofschip, dus een d. Je schrijft wel een f: beloofd. Geen ge-, want het woord begint al met be-.'},
+   {t:'typ', s:'Jij hebt heel hard ___.', inf:'rennen', a:'gerend', u:'De stam is ren. De n zit niet in \'t kofschip, dus een d: gerend.'},
+   {t:'typ', s:'Wij hebben een lange brief ___.', inf:'schrijven', a:'geschreven', u:'Schrijven is een sterk werkwoord. Het voltooid deelwoord eindigt op -en: geschreven.'},
+   {t:'typ', s:'Zij heeft een appeltaart ___.', inf:'bakken', a:'gebakken', u:'Let op: het is bakte in de verleden tijd, maar het voltooid deelwoord is gebakken.'},
+   {t:'typ', s:'Wij hebben die film al ___.', inf:'zien', a:'gezien', u:'Zien is een sterk werkwoord: gezien.'}
+  ]},
+ {id:'pv', group:'Grammatica', title:'Persoonsvorm', sub:'het werkwoord dat verandert als je de tijd verandert',
+  instr:'Tik op de persoonsvorm.',
+  qs:[
+   {t:'tik', s:'Mijn broer [voetbalt] elke zaterdag op het veld.', u:'Zet de zin in een andere tijd: mijn broer voetbalde. Het woord dat verandert is de persoonsvorm.'},
+   {t:'tik', s:'Gisteren [liepen] wij door het bos.', u:'Zet de zin in de tegenwoordige tijd: vandaag lopen wij. Liepen verandert, dus dat is de persoonsvorm.'},
+   {t:'tik', s:'De juf [heeft] een spannend boek voorgelezen.', u:'Andere tijd: de juf had een boek voorgelezen. Heeft verandert. Voorgelezen blijft hetzelfde, dat is het voltooid deelwoord.'},
+   {t:'tik', s:'Morgen [gaan] we met de klas naar het museum.', u:'Andere tijd: gisteren gingen we. Gaan verandert, dus dat is de persoonsvorm.'},
+   {t:'tik', s:'Waarom [lacht] die jongen zo hard?', u:'Andere tijd: waarom lachte die jongen. Lacht verandert, dus dat is de persoonsvorm.'},
+   {t:'tik', s:'In de vakantie [hebben] mijn ouders het huis geverfd.', u:'Andere tijd: hadden mijn ouders het huis geverfd. Hebben verandert. Geverfd blijft hetzelfde.'}
+  ]},
+ {id:'ow', group:'Grammatica', title:'Onderwerp', sub:'wie of wat doet het?',
+  instr:'Tik alle woorden van het onderwerp aan.', multi:true,
+  qs:[
+   {t:'tik', s:'[De oude hond] slaapt in zijn mand.', u:'Vraag: wie of wat slaapt? De oude hond.'},
+   {t:'tik', s:'Gisteren kocht [mijn moeder] nieuwe schoenen.', u:'Vraag: wie of wat kocht? Mijn moeder.'},
+   {t:'tik', s:'Na het eten doen [wij] de afwas.', u:'Vraag: wie of wat doen? Wij.'},
+   {t:'tik', s:'Op het plein spelen [de kinderen van groep zeven].', u:'Vraag: wie of wat spelen? De kinderen van groep zeven. Dat hoort allemaal bij elkaar.'},
+   {t:'tik', s:'Morgen komt [de nieuwe meester].', u:'Vraag: wie of wat komt? De nieuwe meester.'},
+   {t:'tik', s:'Heeft [jouw zus] de fiets gerepareerd?', u:'Vraag: wie of wat heeft? Jouw zus.'}
+  ]},
+ {id:'bn', group:'Grammatica', title:'Bijvoeglijke naamwoorden', sub:'woorden die zeggen hoe iets of iemand is',
+  instr:'Tik alle bijvoeglijke naamwoorden aan.', multi:true,
+  qs:[
+   {t:'tik', s:'De [kleine] kat zit op de [warme] vensterbank.', u:'Kleine zegt iets over de kat. Warme zegt iets over de vensterbank.'},
+   {t:'tik', s:'Wij eten een [lekkere] pizza in een [gezellig] restaurant.', u:'Lekkere zegt iets over de pizza. Gezellig zegt iets over het restaurant.'},
+   {t:'tik', s:'De [hoge] toren staat naast een [oud] kerkje.', u:'Hoge zegt iets over de toren. Oud zegt iets over het kerkje.'},
+   {t:'tik', s:'Mijn [lieve] oma breit een [lange], [blauwe] sjaal.', u:'Lieve zegt iets over oma. Lange en blauwe zeggen iets over de sjaal.'},
+   {t:'tik', s:'De [nieuwe] fiets van Sara is [rood].', u:'Nieuwe en rood zeggen allebei iets over de fiets. Een bijvoeglijk naamwoord kan ook achter is staan.'}
+  ]},
+ {id:'lw', group:'Grammatica', title:'Lidwoorden', sub:'de, het en een',
+  instr:'Tik alle lidwoorden aan.', multi:true,
+  qs:[
+   {t:'tik', s:'[De] jongen geeft [het] boek aan [een] vriend.', u:'De lidwoorden zijn de, het en een.'},
+   {t:'tik', s:'Op [de] tafel staat [een] vaas met bloemen.', u:'De en een zijn lidwoorden. Voor bloemen staat hier geen lidwoord.'},
+   {t:'tik', s:'[Het] meisje aait [de] hond van [de] buren.', u:'Het, de en nog een keer de.'},
+   {t:'tik', s:'Ik heb één appel en [een] peer in [de] tas.', u:'Een en de zijn lidwoorden. Eén met streepjes is een telwoord: het zegt hoeveel.'}
+  ]},
+ {id:'tw', group:'Grammatica', title:'Telwoorden en rangtelwoorden', sub:'hoeveel, of de hoeveelste?',
+  instr:'', multi:true,
+  qs:[
+   {t:'tik', i:'Tik alle telwoorden aan.', s:'Er zitten [vijf] vogels op het dak.', u:'Vijf zegt hoeveel vogels er zijn.'},
+   {t:'tik', i:'Tik alle telwoorden aan.', s:'Mijn opa is [tachtig] jaar en heeft [twaalf] kleinkinderen.', u:'Tachtig en twaalf zeggen hoeveel.'},
+   {t:'tik', i:'Tik alle telwoorden aan.', s:'Wij hebben [drie] katten en [twee] konijnen.', u:'Drie en twee zeggen hoeveel.'},
+   {t:'tik', i:'Tik alle rangtelwoorden aan.', s:'Zij woont in het [derde] huis van de straat.', u:'Derde zegt de hoeveelste: het is een rangtelwoord.'},
+   {t:'tik', i:'Tik alle rangtelwoorden aan.', s:'Op de [eerste] dag van de vakantie regende het.', u:'Eerste zegt de hoeveelste dag het is.'},
+   {t:'tik', i:'Tik alle rangtelwoorden aan.', s:'Ik werd [tweede] bij de wedstrijd met zeven kinderen.', u:'Tweede zegt de hoeveelste: rangtelwoord. Zeven zegt hoeveel: dat is een gewoon telwoord.'},
+   {t:'tik', i:'Tik alle rangtelwoorden aan.', s:'De [twintigste] bezoeker kreeg drie kaartjes.', u:'Twintigste zegt de hoeveelste. Drie zegt hoeveel: dat is een gewoon telwoord.'},
+   {t:'tik', i:'Tik alle rangtelwoorden aan.', s:'Dit is al de [achtste] keer dat ik bel.', u:'Achtste zegt de hoeveelste keer het is.'}
+  ]},
+ {id:'ko', group:'Leestekens', title:'Waar komt de komma?', sub:'tik op het woord waar de komma achter moet',
+  instr:'Achter welk woord moet de komma?', komma:true,
+  qs:[
+   {t:'tik', s:'Als het morgen [regent] blijven wij binnen.', u:'Er staan twee persoonsvormen naast elkaar: regent en blijven. Daartussen komt een komma.'},
+   {t:'tik', s:'Ik wil graag [komen] maar ik heb geen tijd.', u:'Voor maar komt een komma.'},
+   {t:'tik', s:'Omdat hij ziek [was] bleef hij thuis.', u:'Er staan twee persoonsvormen naast elkaar: was en bleef. Daartussen komt een komma.'},
+   {t:'tik', s:'[Sara] kom je straks buiten spelen?', u:'Je spreekt iemand aan. Na de naam komt een komma.'},
+   {t:'tik', s:'Toen de bel [ging] renden alle kinderen naar buiten.', u:'Er staan twee persoonsvormen naast elkaar: ging en renden. Daartussen komt een komma.'},
+   {t:'tik', s:'Ik kocht [appels] peren en bananen.', u:'Dit is een opsomming. Tussen de dingen die je opnoemt komt een komma. Voor en hoeft dat niet.'},
+   {t:'tik', s:'[Nee] dat heb ik niet gedaan.', u:'Na ja of nee aan het begin van de zin komt een komma.'},
+   {t:'tik', s:'Wie niet horen [wil] moet maar voelen.', u:'Er staan twee persoonsvormen naast elkaar: wil en moet. Daartussen komt een komma.'},
+   {t:'tik', s:'Hij was erg [moe] dus hij ging vroeg naar bed.', u:'Voor dus komt een komma.'}
+  ]},
+ {id:'lt', group:'Leestekens', title:'Punt, vraagteken of uitroepteken?', sub:'welk teken hoort aan het eind?',
+  instr:'Welk leesteken hoort aan het eind van de zin?',
+  qs:[
+   {t:'kies', s:'Hoe laat begint de film', a:'?', u:'Het is een vraag.'},
+   {t:'kies', s:'Kijk uit', a:'!', u:'Je roept iets of waarschuwt iemand.'},
+   {t:'kies', s:'Wij gaan morgen naar opa', a:'.', u:'Het is een gewone mededeling.'},
+   {t:'kies', s:'Wat een prachtig cadeau', a:'!', u:'Het is een uitroep. Je vraagt niets, ook al begint de zin met wat.'},
+   {t:'kies', s:'Heb jij mijn sleutels gezien', a:'?', u:'Het is een vraag. De persoonsvorm staat vooraan.'},
+   {t:'kies', s:'Ik vraag me af waar hij woont', a:'.', u:'Je vertelt dat je je iets afvraagt. Je stelt de vraag niet aan iemand.'},
+   {t:'kies', s:'Stop, daar komt een auto', a:'!', u:'Je waarschuwt iemand.'},
+   {t:'kies', s:'Zij vroeg of ik mee wilde', a:'.', u:'Je vertelt wat zij vroeg. De zin zelf is geen vraag.'},
+   {t:'kies', s:'Waarom ben je zo laat', a:'?', u:'Het is een vraag.'},
+   {t:'kies', s:'Gefeliciteerd met je verjaardag', a:'!', u:'Het is een uitroep, een wens.'}
+  ]}
+];
+
+var app = document.getElementById('app');
+var run = null;
+
+function h(tag, attrs, kids){
+  var e = document.createElement(tag), k;
+  for (k in (attrs || {})){
+    if (k === 'class') e.className = attrs[k];
+    else if (k === 'text') e.textContent = attrs[k];
+    else if (k.slice(0,2) === 'on') e.addEventListener(k.slice(2), attrs[k]);
+    else e.setAttribute(k, attrs[k]);
+  }
+  (kids || []).forEach(function(c){ if (c) e.appendChild(typeof c === 'string' ? document.createTextNode(c) : c); });
+  return e;
+}
+function shuffle(a){ a = a.slice(); for (var i = a.length - 1; i > 0; i--){ var j = Math.floor(Math.random() * (i + 1)), x = a[i]; a[i] = a[j]; a[j] = x; } return a; }
+function best(id, val){
+  try {
+    var all = JSON.parse(localStorage.getItem('taaltoets') || '{}');
+    if (val !== undefined){ if (!(all[id] >= val)) { all[id] = val; localStorage.setItem('taaltoets', JSON.stringify(all)); } }
+    return all[id];
+  } catch (e) { return undefined; }
+}
+// "[De oude hond] slaapt" wordt een lijst woorden met een vlag voor het goede antwoord
+function words(s){
+  var marked = s.replace(/\[([^\]]+)\]/g, function(m, g){ return g.split(' ').map(function(w){ return '~' + w; }).join(' '); });
+  return marked.split(' ').map(function(w){ return w.charAt(0) === '~' ? {w: w.slice(1), a: true} : {w: w, a: false}; });
+}
+function plain(s){ return s.replace(/[\[\]]/g, ''); }
+function bare(w){ return w.replace(/[.,?!]/g, ''); }
+
+function home(){
+  run = null;
+  app.innerHTML = '';
+  app.appendChild(h('h1', {text: 'Oefentoets taal groep 7'}));
+  app.appendChild(h('p', {class: 'mute', text: 'Kies een onderdeel. Na elke vraag zie je meteen of het goed is, met uitleg erbij.'}));
+  var total = 0; PARTS.forEach(function(p){ total += p.qs.length; });
+  app.appendChild(partBtn({id: 'mix', title: 'Alles door elkaar', sub: '20 vragen uit alle onderdelen', n: 20}, true));
+  var g = '';
+  PARTS.forEach(function(p){
+    if (p.group !== g){ g = p.group; app.appendChild(h('div', {class: 'group', text: g})); }
+    app.appendChild(partBtn({id: p.id, title: p.title, sub: p.sub, n: p.qs.length}, false));
+  });
+  app.appendChild(h('p', {class: 'mute small', text: 'In totaal ' + total + ' vragen. Er wordt niets opgestuurd of bewaard, behalve je beste score op dit apparaat.'}));
+  window.scrollTo(0, 0);
+}
+function partBtn(o, mix){
+  var b = best(o.id);
+  return h('button', {class: 'part' + (mix ? ' mix' : ''), onclick: function(){ start(o.id); }}, [
+    h('span', {class: 'grow'}, [h('b', {text: o.title}), h('span', {class: 's', text: o.sub + (mix ? '' : ' · ' + o.n + ' vragen')})]),
+    b !== undefined && !mix ? h('span', {class: 'best', text: 'beste: ' + b + '/' + o.n}) : null
+  ]);
+}
+
+function start(id){
+  var qs = [], title;
+  if (id === 'mix'){
+    title = 'Alles door elkaar';
+    PARTS.forEach(function(p){ shuffle(p.qs).slice(0, 2).forEach(function(q){ qs.push({q: q, p: p}); }); });
+    qs = shuffle(qs);
+  } else {
+    var p = PARTS.filter(function(x){ return x.id === id; })[0];
+    title = p.title;
+    qs = shuffle(p.qs).map(function(q){ return {q: q, p: p}; });
+  }
+  run = {id: id, title: title, qs: qs, i: 0, good: 0, wrong: []};
+  draw();
+}
+
+function draw(){
+  var item = run.qs[run.i], q = item.q, p = item.p;
+  app.innerHTML = '';
+  app.appendChild(h('div', {class: 'top'}, [
+    h('button', {class: 'back', text: '‹ Onderdelen', onclick: home}),
+    h('span', {class: 'count', text: 'Vraag ' + (run.i + 1) + ' van ' + run.qs.length})
+  ]));
+  var bar = h('i'); bar.style.width = (run.i / run.qs.length * 100) + '%';
+  app.appendChild(h('div', {class: 'bar'}, [bar]));
+  var card = h('div', {class: 'card'});
+  app.appendChild(card);
+  card.appendChild(h('div', {class: 'tag', text: p.title}));
+  card.appendChild(h('div', {class: 'instr', text: q.i || p.instr}));
+  var sent = h('div', {class: 'sent'});
+  card.appendChild(sent);
+  var fb = h('div');
+  var go = h('button', {class: 'go', text: 'Controleer'});
+  var done = false, getAnswer, canCheck = function(){ return true; }, lock;
+
+  function finish(ok, given, right){
+    done = true;
+    if (ok) run.good++; else run.wrong.push({q: q, p: p, given: given, right: right});
+    fb.className = 'fb ' + (ok ? 'ok' : 'no');
+    fb.appendChild(h('b', {text: ok ? 'Goed!' : 'Niet goed. Het goede antwoord: ' + right}));
+    fb.appendChild(document.createTextNode(q.u));
+    go.textContent = run.i + 1 < run.qs.length ? 'Volgende vraag' : 'Bekijk je score';
+    go.disabled = false;
+    go.focus();
+  }
+  go.addEventListener('click', function(){
+    if (done){ run.i++; if (run.i < run.qs.length) draw(); else end(); return; }
+    if (!canCheck()) return;
+    getAnswer();
+  });
+
+  if (q.t === 'typ'){
+    var parts = q.s.split('___');
+    var inp = h('input', {class: 'gap', type: 'text', autocomplete: 'off', autocapitalize: 'off', autocorrect: 'off', spellcheck: 'false', 'aria-label': 'Jouw antwoord'});
+    if (parts[0]) sent.appendChild(document.createTextNode(parts[0]));
+    sent.appendChild(inp);
+    sent.appendChild(document.createTextNode(parts[1] + ' '));
+    sent.appendChild(h('span', {class: 'inf', text: '(' + q.inf + ')'}));
+    canCheck = function(){ return inp.value.trim() !== ''; };
+    go.disabled = true;
+    inp.addEventListener('input', function(){ if (!done) go.disabled = !canCheck(); });
+    inp.addEventListener('keydown', function(e){ if (e.key === 'Enter'){ e.preventDefault(); go.click(); } });
+    getAnswer = function(){
+      var v = inp.value.trim().replace(/[.?!]$/, '').toLowerCase();
+      var ok = v === q.a;
+      inp.readOnly = true; inp.classList.add(ok ? 'ok' : 'no');
+      finish(ok, inp.value.trim(), q.s.charAt(0) === '_' ? q.a.charAt(0).toUpperCase() + q.a.slice(1) : q.a);
+    };
+    setTimeout(function(){ inp.focus(); }, 30);
+  }
+  else if (q.t === 'tik'){
+    var ws = words(q.s), multi = !!p.multi, btns = [];
+    ws.forEach(function(w, i){
+      var b = h('button', {class: 'w', type: 'button', text: w.w, 'aria-pressed': 'false'});
+      b.addEventListener('click', function(){
+        if (done) return;
+        if (!multi) btns.forEach(function(x){ if (x !== b){ x.classList.remove('on'); x.setAttribute('aria-pressed', 'false'); } });
+        b.classList.toggle('on');
+        b.setAttribute('aria-pressed', b.classList.contains('on') ? 'true' : 'false');
+        go.disabled = !canCheck();
+      });
+      btns.push(b); sent.appendChild(b);
+    });
+    canCheck = function(){ return btns.some(function(b){ return b.classList.contains('on'); }); };
+    go.disabled = true;
+    getAnswer = function(){
+      var ok = true, given = [], right = [];
+      ws.forEach(function(w, i){
+        var on = btns[i].classList.contains('on');
+        if (on) given.push(bare(w.w));
+        if (w.a) right.push(bare(w.w));
+        if (on !== w.a) ok = false;
+        btns[i].disabled = true;
+        btns[i].classList.remove('on');
+        if (on && w.a) btns[i].classList.add('ok');
+        else if (on) btns[i].classList.add('no');
+        else if (w.a) btns[i].classList.add('miss');
+      });
+      var r = right.join(p.id === 'ow' ? ' ' : ', ');
+      if (p.komma) r = ws.map(function(w){ return w.a ? w.w + ',' : w.w; }).join(' ');
+      finish(ok, given.join(p.id === 'ow' ? ' ' : ', '), r);
+    };
+  }
+  else {
+    sent.appendChild(document.createTextNode(q.s + ' …'));
+    var marks = h('div', {class: 'marks'}), chosen = null, mb = [];
+    [['.', 'punt'], ['?', 'vraagteken'], ['!', 'uitroepteken']].forEach(function(m){
+      var b = h('button', {class: 'mark', type: 'button', 'aria-label': m[1]}, [m[0], h('small', {text: m[1]})]);
+      b.addEventListener('click', function(){
+        if (done) return;
+        chosen = m[0];
+        mb.forEach(function(x){ x.b.disabled = true; if (x.m === q.a) x.b.classList.add('ok'); });
+        if (chosen !== q.a) b.classList.add('no');
+        sent.textContent = q.s + q.a;
+        finish(chosen === q.a, m[1], q.s + q.a);
+      });
+      mb.push({b: b, m: m[0]}); marks.appendChild(b);
+    });
+    card.appendChild(marks);
+    go.disabled = true;
+    getAnswer = function(){};
+  }
+  card.appendChild(fb);
+  card.appendChild(go);
+  window.scrollTo(0, 0);
+}
+
+function end(){
+  var n = run.qs.length, g = run.good, pct = g / n;
+  if (run.id !== 'mix') best(run.id, g);
+  app.innerHTML = '';
+  app.appendChild(h('div', {class: 'top'}, [h('button', {class: 'back', text: '‹ Onderdelen', onclick: home})]));
+  var card = h('div', {class: 'card'});
+  app.appendChild(card);
+  card.appendChild(h('div', {class: 'tag', text: run.title}));
+  card.appendChild(h('div', {class: 'score', text: g + ' van ' + n}));
+  card.appendChild(h('p', {text: pct === 1 ? 'Alles goed. Dit onderdeel ken je.' : pct >= 0.8 ? 'Bijna alles goed. Kijk nog even naar je fouten hieronder.' : pct >= 0.55 ? 'Je bent er bijna. Lees de uitleg bij je fouten en probeer het nog een keer.' : 'Dit onderdeel is nog lastig. Lees de uitleg bij je fouten rustig door en probeer het dan opnieuw.'}));
+  var id = run.id;
+  card.appendChild(h('div', {class: 'row'}, [
+    h('button', {class: 'go', text: 'Nog een keer', onclick: function(){ start(id); }}),
+    h('button', {class: 'go alt', text: 'Ander onderdeel', onclick: home})
+  ]));
+  if (run.wrong.length){
+    app.appendChild(h('div', {class: 'group', text: 'Dit ging fout'}));
+    var list = h('div', {class: 'card'});
+    run.wrong.forEach(function(x){
+      list.appendChild(h('div', {class: 'wrong'}, [
+        h('div', {class: 'q', text: x.q.t === 'typ' ? x.q.s + ' (' + x.q.inf + ')' : plain(x.q.s)}),
+        h('div', {class: 'y', text: 'Jouw antwoord: ' + x.given}),
+        h('div', {class: 'g', text: 'Goed is: ' + x.right}),
+        h('div', {class: 'mute small', text: x.q.u})
+      ]));
+    });
+    app.appendChild(list);
+  }
+  window.scrollTo(0, 0);
+}
+
+home();
+</script>
+</body>
+</html>
